@@ -209,7 +209,8 @@ runs:
         if [ ${GIT_BRANCH_NAME } = 'main' ]; then
             export BACKEND='https://io.offgridcontroller.com';
         else
-            export BACKEND='https://dev.offgridcontroller.com:8888'
+            export BACKEND='https://dev.offgridcontroller.com:8888';
+        fi
 
         echo "Backend URL: $BACKEND"
         
