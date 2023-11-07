@@ -206,7 +206,7 @@ runs:
           DOCKER_TAGS="$DOCKER_TAGS -t ${{ inputs.registry }}/${IMAGE_NAME}:$TAG"
         done
 
-        if [ ${GIT_BRANCH_NAME } = 'main' ]; then
+        if [ ${GIT_BRANCH_NAME} = 'main' ]; then
             export BACKEND='https://io.offgridcontroller.com';
         else
             export BACKEND='https://dev.offgridcontroller.com:8888';
