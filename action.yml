@@ -91,8 +91,8 @@ runs:
   using: "composite"
   steps:
     - name: Git branch name
-        id: git-branch-name
-        uses: EthanSK/git-branch-name-action@v1
+      id: git-branch-name
+      uses: EthanSK/git-branch-name-action@v1
 
     - name: Configure for AWS if using ECR
       shell: bash
