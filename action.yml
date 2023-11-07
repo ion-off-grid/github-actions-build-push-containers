@@ -222,7 +222,7 @@ runs:
           --build-arg BUILDKIT_INLINE_CACHE=1 \
           --build-arg BUILD_DATE="${BUILD_DATE}" \
           --build-arg GITHUB_SHA="${GITHUB_SHA}" \
-          --build-arg BACKEND=$BACKEND
+          --build-arg BACKEND=$BACKEND \
           $DOCKER_TAGS \
           --label "org.label-schema.build-date=${BUILD_DATE}" \
           --label "org.label-schema.vcs-url=${GITHUB_URL}" \
