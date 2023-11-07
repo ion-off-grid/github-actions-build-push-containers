@@ -90,6 +90,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Git branch name
+        id: git-branch-name
+        uses: EthanSK/git-branch-name-action@v1
+
     - name: Configure for AWS if using ECR
       shell: bash
       if: contains(inputs.registry, '.dkr.ecr.')
@@ -197,6 +201,11 @@ runs:
         for TAG in "${ADDR[@]}"; do
           DOCKER_TAGS="$DOCKER_TAGS -t ${{ inputs.registry }}/${IMAGE_NAME}:$TAG"
         done
+
+        if [ ${GIT_BRANCH_NAME } = 'main' ]; then
+            export BACKEND='https://io.offgridcontroller.com';
+        else
+            export BACKEND='https://dev.offgridcontroller.com:8888'
         
         echo "::group::Building the Docker image as ${{ inputs.registry }}/${IMAGE_NAME}:${TARGET_REF} from ${{ inputs.dockerfile }} in ${{ inputs.context }} context ..."
 
@@ -206,6 +215,7 @@ runs:
           --build-arg BUILDKIT_INLINE_CACHE=1 \
           --build-arg BUILD_DATE="${BUILD_DATE}" \
           --build-arg GITHUB_SHA="${GITHUB_SHA}" \
+          --build-arg BACKEND=$BACKEND
           $DOCKER_TAGS \
           --label "org.label-schema.build-date=${BUILD_DATE}" \
           --label "org.label-schema.vcs-url=${GITHUB_URL}" \
