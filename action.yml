@@ -90,10 +90,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Git branch name
-      id: git-branch-name
-      uses: EthanSK/git-branch-name-action@v1
-
     - name: Configure for AWS if using ECR
       shell: bash
       if: contains(inputs.registry, '.dkr.ecr.')
@@ -159,6 +155,13 @@ runs:
       with:
         ref: ''
         path: ${{ inputs.target_directory }}
+
+    - name: Git branch name
+      id: git-branch-name
+      uses: EthanSK/git-branch-name-action@v1
+
+    - name: Echo the branch name
+      run: echo "Branch name ${GIT_BRANCH_NAME}"
     
     - name: Create GlueOps Tags
       if: inputs.tags == ''
@@ -206,6 +209,8 @@ runs:
             export BACKEND='https://io.offgridcontroller.com';
         else
             export BACKEND='https://dev.offgridcontroller.com:8888'
+
+        echo "Backend URL: $BACKEND"
         
         echo "::group::Building the Docker image as ${{ inputs.registry }}/${IMAGE_NAME}:${TARGET_REF} from ${{ inputs.dockerfile }} in ${{ inputs.context }} context ..."
 
