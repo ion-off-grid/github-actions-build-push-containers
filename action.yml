@@ -158,7 +158,7 @@ runs:
 
     - name: Git branch name
       id: git-branch-name
-      uses: EthanSK/git-branch-name-action@v1
+      uses: EthanSK/git-branch-name-action@4c91a251c9c23e4192b45030712f63918634225e
 
     - name: Echo the branch name
       shell: bash
