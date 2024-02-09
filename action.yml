@@ -166,7 +166,7 @@ runs:
     
     - name: Create GlueOps Tags
       if: inputs.tags == ''
-      uses: Glueops/github-actions-create-container-tags@v0.1.1
+      uses: Glueops/github-actions-create-container-tags@main
       id: create-tags
 
     - name: Build Container
