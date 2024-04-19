@@ -208,8 +208,14 @@ runs:
 
         if [ ${GIT_BRANCH_NAME} = 'main' ]; then
             export BACKEND='https://io.offgridcontroller.com';
+            export MQTT_URL=wss://io.offgridcontroller.com:8083/mqtt;
+            export MQTT_USER=offgrid;
+            export MQTT_PASS=1234567890;
         else
             export BACKEND='https://dev.offgridcontroller.com:8888';
+            export MQTT_URL=wss://dev.offgridcontroller.com:8083/mqtt;
+            export MQTT_USER=offgrid;
+            export MQTT_PASS=1234567890;
         fi
 
         echo "Backend URL: $BACKEND"
@@ -223,6 +229,9 @@ runs:
           --build-arg BUILD_DATE="${BUILD_DATE}" \
           --build-arg GITHUB_SHA="${GITHUB_SHA}" \
           --build-arg BACKEND="${BACKEND}" \
+          --build-arg MQTT_URL="${MQTT_URL}" \
+          --build-arg MQTT_USER="${MQTT_USER}" \
+          --build-arg MQTT_PASS="${MQTT_PASS}" \
           $DOCKER_TAGS \
           --label "org.label-schema.build-date=${BUILD_DATE}" \
           --label "org.label-schema.vcs-url=${GITHUB_URL}" \
