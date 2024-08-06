@@ -208,12 +208,12 @@ runs:
 
         if [ ${GIT_BRANCH_NAME} = 'main' ]; then
             export BACKEND='https://io.offgridcontroller.com';
-            export MQTT_URL=wss://io.offgridcontroller.com/mqtt;
+            export MQTT_URL=wss://io.offgridcontroller.com:8083/mqtt;
             export MQTT_USER=offgrid;
             export MQTT_PASS=1234567890;
         else
             export BACKEND='https://dev.offgridcontroller.com:8888';
-            export MQTT_URL=wss://dev.offgridcontroller.com/mqtt;
+            export MQTT_URL=wss://dev.offgridcontroller.com:8083/mqtt;
             export MQTT_USER=offgrid;
             export MQTT_PASS=1234567890;
         fi
